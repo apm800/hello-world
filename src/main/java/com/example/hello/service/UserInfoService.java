@@ -10,9 +10,9 @@ import java.util.List;
  */
 public interface UserInfoService {
 
-    List<UserInfo> listAll();
-
     List<UserInfo> getByMaster();
+
+    List<UserInfo> getByOther();
 
     int insert(UserInfo userInfo);
 }

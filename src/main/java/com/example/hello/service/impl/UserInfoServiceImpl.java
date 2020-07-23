@@ -2,7 +2,7 @@ package com.example.hello.service.impl;
 
 import com.example.hello.annotation.properties.TargetDataSource;
 import com.example.hello.datasource.properties.DataSourceKey;
-import com.example.hello.dao.UserInfoMapper;
+import com.example.hello.dao.UserInfoDao;
 import com.example.hello.entity.UserInfo;
 import com.example.hello.service.UserInfoService;
 import org.apache.log4j.Logger;
@@ -19,23 +19,23 @@ import java.util.List;
 public class UserInfoServiceImpl implements UserInfoService {
     private static final Logger LOG = Logger.getLogger(UserInfoServiceImpl.class);
     @Resource
-    private UserInfoMapper userInfoMapper;
-
-    @TargetDataSource(dataSourceKey = DataSourceKey.DB_OTHER)
-    @Override
-    public List<UserInfo> listAll() {
-        return userInfoMapper.listAll();
-    }
+    private UserInfoDao userInfoDao;
 
     @TargetDataSource(dataSourceKey = DataSourceKey.DB_MASTER)
     @Override
     public List<UserInfo> getByMaster() {
-        return userInfoMapper.listAll();
+        return userInfoDao.listAll();
+    }
+
+    @TargetDataSource(dataSourceKey = DataSourceKey.DB_OTHER)
+    @Override
+    public List<UserInfo> getByOther() {
+        return userInfoDao.listAll();
     }
 
     @TargetDataSource(dataSourceKey = DataSourceKey.DB_OTHER)
     @Override
     public int insert(UserInfo userInfo) {
-        return userInfoMapper.insert(userInfo);
+        return userInfoDao.insert(userInfo);
     }
 }

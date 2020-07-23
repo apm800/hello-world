@@ -15,7 +15,7 @@ import java.lang.reflect.Method;
 
 /**
  * @author zhoukai
- * @date 2020/7/22 15:27
+ * @date 2020/7/23 15:21
  */
 @Aspect
 @Order(-1)
@@ -23,7 +23,7 @@ import java.lang.reflect.Method;
 public class DynamicDataSourceAspect {
     private static final Logger LOG = Logger.getLogger(DynamicDataSourceAspect.class);
 
-    @Pointcut("execution(* com.apedad.example.service.*.list*(..))")
+    @Pointcut("execution(* com.example.hello.service.*.list*(..))")
     public void pointCut() {
     }
 

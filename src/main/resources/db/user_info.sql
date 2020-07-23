@@ -31,6 +31,6 @@ CREATE TABLE `user_info`  (
 -- ----------------------------
 -- Records of user_info
 -- ----------------------------
-INSERT INTO `user_info` VALUES (1000, 'admin', 'admin@apedad.com');
+INSERT INTO `user_info` VALUES (1000, 'admin', 'admin@qq.com');
 
 SET FOREIGN_KEY_CHECKS = 1;

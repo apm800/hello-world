@@ -2,7 +2,7 @@ package com.example.hello.datasource.properties;
 
 /**
  * @author zhoukai
- * @date 2020/7/22 15:26
+ * @date 2020/7/23 15:19
  */
 public enum DataSourceKey {
     DB_MASTER,

@@ -10,7 +10,7 @@ import java.util.List;
  * @date 2020/7/22 15:29
  */
 @Mapper
-public interface UserInfoMapper {
+public interface UserInfoDao {
     List<UserInfo> listAll();
 
     int insert(UserInfo userInfo);

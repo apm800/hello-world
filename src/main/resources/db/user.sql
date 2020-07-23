@@ -34,6 +34,5 @@ CREATE TABLE `user`  (
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES (1000, 'admin', 'admin', '2018-01-19 16:43:38', '2018-01-19 16:43:40');
-INSERT INTO `user` VALUES (1001, 'rocliu', 'rocliu', '2018-01-19 16:43:58', '2018-01-19 16:44:00');
 
 SET FOREIGN_KEY_CHECKS = 1;
