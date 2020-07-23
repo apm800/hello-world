@@ -1,0 +1,48 @@
+spring:
+    aop:
+        proxy-target-class: true
+    datasource:
+        readSize: 2 #需要配置
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.jdbc.Driver
+        druid:
+            master:  #数据源1 写
+                url: jdbc:mysql://127.0.0.1:3306/db_master?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+                username: root
+                password: root
+            # password : ENC(CMTWfWzC/iXWiW/PeFPJ9dYlpBHwOkxc)
+            slave1:  #数据源2 读1
+                url: jdbc:mysql://127.0.0.1:3306/db_master?charSet=utf-8
+                username: root
+                password: root
+
+            slave2:  #数据源3 读2
+                url: jdbc:mysql://127.0.0.1:3306/db_other?charSet=utf-8
+                username: root
+                password: root
+
+            initial-size: 10
+            max-active: 100
+            min-idle: 10
+            max-wait: 60000
+            pool-prepared-statements: true
+            max-pool-prepared-statement-per-connection-size: 20
+            time-between-eviction-runs-millis: 60000
+            min-evictable-idle-time-millis: 300000
+            validation-query: SELECT 1 FROM DUAL
+            test-while-idle: true
+            test-on-borrow: false
+            test-on-return: false
+            stat-view-servlet:
+                enabled: true
+                url-pattern: /druid/*
+                #login-username: admin
+                #login-password: admin
+            filter:
+                stat:
+                    log-slow-sql: true
+                    slow-sql-millis: 3000
+                    merge-sql: true
+                wall:
+                    config:
+                        multi-statement-allow: true
