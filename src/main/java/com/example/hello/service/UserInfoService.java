@@ -14,5 +14,9 @@ public interface UserInfoService {
 
     List<UserInfo> getByOther();
 
+    List<UserInfo> getByRead();
+
+    List<UserInfo> getByWrite();
+
     int insert(UserInfo userInfo);
 }

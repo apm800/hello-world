@@ -1,19 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.hello.dao.UserInfoDao">
-    <resultMap id="base_result_map" type="com.example.hello.entity.UserInfo">
+    <resultMap id="resultMap" type="com.example.hello.entity.UserInfo">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="email" property="email"/>
     </resultMap>
+
     <sql id="base_sql">
         id,name,email
     </sql>
-    <select id="listAll" resultMap="base_result_map">
+    <!--properties格式,同一sql从不同数据库查询数据-->
+    <select id="listAll" resultMap="resultMap">
         SELECT
         <include refid="base_sql"/>
         FROM user_info
     </select>
+    <!--yml格式,同样的sql,从不同数据库查询数据-->
+    <select id="getByRead" resultMap="resultMap">
+        SELECT
+        <include refid="base_sql"/>
+        FROM user_info
+    </select>
+    <!--yml格式,同样的sql,从不同数据库查询数据-->
+    <select id="getByWrite" resultMap="resultMap">
+        SELECT
+        <include refid="base_sql"/>
+        FROM user_info
+    </select>
+
     <insert id="insert" parameterType="com.example.hello.entity.UserInfo">
         INSERT INTO user_info
         (name,email)

@@ -42,4 +42,22 @@ public class TestController {
         System.out.println("当前数据源为: " + userInfoList.get(0).getName());
         return userInfoList;
     }
+
+    @ApiOperation(value = "yml-getByRead")
+    @RequestMapping(method = RequestMethod.GET, value = "/getByRead")
+    @ResponseBody
+    public List<UserInfo> getByRead() {
+        List<UserInfo> userInfoList = userInfoServiceImpl.getByRead();
+        System.out.println("当前数据源为: " + userInfoList.get(0).getName());
+        return userInfoList;
+    }
+
+    @ApiOperation(value = "yml-getByWrite")
+    @RequestMapping(method = RequestMethod.GET, value = "/getByWrite")
+    @ResponseBody
+    public List<UserInfo> getByWrite() {
+        List<UserInfo> userInfoList = userInfoServiceImpl.getByWrite();
+        System.out.println("当前数据源为: " + userInfoList.get(0).getName());
+        return userInfoList;
+    }
 }

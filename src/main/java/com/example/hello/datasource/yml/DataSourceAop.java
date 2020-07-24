@@ -13,6 +13,7 @@ import java.lang.reflect.Method;
 
 /**
  * 如果使用properties格式配置,需要将此注掉
+ *
  * @author zhoukai
  * @date 2020/7/23 10:50
  */
@@ -23,10 +24,12 @@ public class DataSourceAop {
 
     @Pointcut("@annotation(com.example.hello.annotation.yml.WriteDataSource)")
     public void writeMethod() {
+        System.out.println("");
     }
 
     @Pointcut("@annotation(com.example.hello.annotation.yml.ReadDataSource)")
     public void readMethod() {
+        System.out.println("");
     }
 
     @Before("writeMethod()")
@@ -35,7 +38,7 @@ public class DataSourceAop {
         String className = point.getTarget().getClass().getName();
         String methodName = point.getSignature().getName();
         System.out.println("开始执行:" + className + "." + methodName + "()方法...");
-        log.info("dataSource切换到：write");
+        log.info("dataSource切换到：Write");
     }
 
     @Before("readMethod()")

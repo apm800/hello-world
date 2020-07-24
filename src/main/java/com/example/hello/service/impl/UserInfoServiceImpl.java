@@ -1,6 +1,8 @@
 package com.example.hello.service.impl;
 
 import com.example.hello.annotation.properties.TargetDataSource;
+import com.example.hello.annotation.yml.ReadDataSource;
+import com.example.hello.annotation.yml.WriteDataSource;
 import com.example.hello.datasource.properties.DataSourceKey;
 import com.example.hello.dao.UserInfoDao;
 import com.example.hello.entity.UserInfo;
@@ -31,6 +33,22 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Override
     public List<UserInfo> getByOther() {
         return userInfoDao.listAll();
+    }
+
+    //不加注解默认为 读
+    @ReadDataSource(description = "READ")
+//    @WriteDataSource(description="WRITE")
+    @Override
+    public List<UserInfo> getByRead() {
+        return userInfoDao.getByRead();
+    }
+
+    //    @ReadDataSource(description="READ")
+    @WriteDataSource(description = "WRITE")
+    //@Transactional(propagation= Propagation.REQUIRED,isolation= Isolation.DEFAULT,readOnly=true)
+    @Override
+    public List<UserInfo> getByWrite() {
+        return userInfoDao.getByWrite();
     }
 
     @TargetDataSource(dataSourceKey = DataSourceKey.DB_OTHER)

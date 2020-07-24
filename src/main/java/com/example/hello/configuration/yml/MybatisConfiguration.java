@@ -1,6 +1,5 @@
-package com.example.hello.configuration;
+package com.example.hello.configuration.yml;
 
-import com.example.hello.datasource.yml.DataSourceConfiguration;
 import com.example.hello.datasource.yml.MyAbstractRoutingDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -24,6 +23,7 @@ import java.util.Map;
 
 /**
  * 如果使用properties格式配置,需要将此注掉
+ *
  * @author zhoukai
  * @date 2020/7/23 10:26
  */

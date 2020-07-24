@@ -14,4 +14,8 @@ public interface UserInfoDao {
     List<UserInfo> listAll();
 
     int insert(UserInfo userInfo);
+
+    List<UserInfo> getByRead();
+
+    List<UserInfo> getByWrite();
 }

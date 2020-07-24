@@ -11,8 +11,13 @@ spring:
                 username: root
                 password: root
             # password : ENC(CMTWfWzC/iXWiW/PeFPJ9dYlpBHwOkxc)
+            other:  #数据源2 读1
+                url: jdbc:mysql://127.0.0.1:3306/db_other?charSet=utf-8
+                username: root
+                password: root
+
             slave1:  #数据源2 读1
-                url: jdbc:mysql://127.0.0.1:3306/db_master?charSet=utf-8
+                url: jdbc:mysql://127.0.0.1:3306/db_other?charSet=utf-8
                 username: root
                 password: root
 
