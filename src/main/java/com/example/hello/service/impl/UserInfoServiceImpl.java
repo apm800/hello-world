@@ -7,7 +7,8 @@ import com.example.hello.datasource.properties.DataSourceKey;
 import com.example.hello.dao.UserInfoDao;
 import com.example.hello.entity.UserInfo;
 import com.example.hello.service.UserInfoService;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -19,7 +20,7 @@ import java.util.List;
  */
 @Service("userInfoService")
 public class UserInfoServiceImpl implements UserInfoService {
-    private static final Logger LOG = Logger.getLogger(UserInfoServiceImpl.class);
+    private static final Logger LOG = LogManager.getLogger(UserInfoServiceImpl.class);
     @Resource
     private UserInfoDao userInfoDao;
 

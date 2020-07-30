@@ -1,6 +1,7 @@
 package com.example.hello.datasource.properties;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
 /**
@@ -8,7 +9,7 @@ import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
  * @date 2020/7/22 15:28
  */
 public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
-    private static final Logger LOG = Logger.getLogger(DynamicRoutingDataSource.class);
+    private static final Logger LOG = LogManager.getLogger(DynamicRoutingDataSource.class);
 
     @Override
     protected Object determineCurrentLookupKey() {

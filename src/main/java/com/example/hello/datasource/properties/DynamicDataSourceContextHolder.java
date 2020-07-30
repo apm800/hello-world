@@ -1,14 +1,15 @@
 package com.example.hello.datasource.properties;
 
 import org.apache.commons.lang3.RandomUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * @author zhoukai
  * @date 2020/7/23 15:21
  */
 public class DynamicDataSourceContextHolder {
-    private static final Logger LOG = Logger.getLogger(DynamicDataSourceContextHolder.class);
+    private static final Logger LOG = LogManager.getLogger(DynamicDataSourceContextHolder.class);
 
     private static final ThreadLocal<DataSourceKey> currentDataSource = new ThreadLocal<>();
 

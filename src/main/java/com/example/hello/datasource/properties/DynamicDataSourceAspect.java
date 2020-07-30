@@ -1,7 +1,8 @@
 package com.example.hello.datasource.properties;
 
 import com.example.hello.annotation.properties.TargetDataSource;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
@@ -21,7 +22,7 @@ import java.lang.reflect.Method;
 @Order(-1)
 @Component
 public class DynamicDataSourceAspect {
-    private static final Logger LOG = Logger.getLogger(DynamicDataSourceAspect.class);
+    private static final Logger LOG = LogManager.getLogger(DynamicDataSourceAspect.class);
 
     @Pointcut("execution(* com.example.hello.service.*.list*(..))")
     public void pointCut() {
