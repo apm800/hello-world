@@ -18,10 +18,10 @@ import java.util.List;
  * @author zhoukai
  * @date 2020/7/22 15:28
  */
-@Api(value = "TestController", description = "读写分离")
+@Api(value = "MultiDataSourceController", description = "读写分离")
 @RestController
 @RequestMapping("/test")
-public class TestController {
+public class MultiDataSourceController {
     @Autowired
     private UserInfoService userInfoServiceImpl;
 
