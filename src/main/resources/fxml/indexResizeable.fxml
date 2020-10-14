@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextField?>
+<VBox fx:controller="com.example.hello.controller.DataPrepareController" xmlns:fx="http://javafx.com/fxml"
+      alignment="center" style="-fx-background-color: antiquewhite">
+    <!--<AnchorPane id="AnchorPane" fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"-->
+    <!--minWidth="-Infinity" prefHeight="485.0" prefWidth="722.0" xmlns="http://javafx.com/javafx/8.0.121"-->
+    <!--xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hello.controller.DataPrepareController">-->
+    <children>
+        <HBox prefWidth="400" prefHeight="40" VBox.vgrow="ALWAYS">
+            <Hyperlink onAction="#abcLink" text="A接口库" textFill="BLACK"/>
+            <Hyperlink onAction="#abcLink" text="B数据准备" textFill="BLACK"/>
+            <Hyperlink onAction="#abcLink" text="C查看" textFill="BLACK"/>
+            <Hyperlink onAction="#help" text="H帮助" textFill="BLACK"/>
+        </HBox>
+
+        <HBox fx:id="hbUser" prefWidth="400" prefHeight="40" VBox.vgrow="ALWAYS" style="-fx-background-color: red">
+            <HBox prefWidth="400" prefHeight="40" VBox.vgrow="ALWAYS" style="-fx-background-color: dodgerblue">
+                <Hyperlink onAction="#abcLink" text="A接口库" textFill="BLACK"/>
+                <Hyperlink onAction="#abcLink" text="B数据准备" textFill="BLACK"/>
+                <Hyperlink onAction="#abcLink" text="C查看" textFill="BLACK"/>
+                <Hyperlink onAction="#help" text="H帮助" textFill="BLACK"/>
+            </HBox>
+            <HBox prefWidth="400" prefHeight="40" VBox.vgrow="ALWAYS" style="-fx-background-color: greenyellow">
+                <children>
+                    <JFXButton fx:id="dataSpilt" buttonType="RAISED"  prefWidth="120" prefHeight="40" text="数据拆分"/>
+                    <JFXButton fx:id="cilOption" buttonType="RAISED"  prefWidth="120" prefHeight="40" text="CIL处理"/>
+                    <JFXButton fx:id="refresh" buttonType="RAISED"  prefWidth="120" prefHeight="40" text="状态刷新"/>
+                    <JFXButton fx:id="exit" buttonType="RAISED"  prefWidth="120" prefHeight="40" text="退出"/>
+                </children>
+                <padding>
+                    <Insets top="0.0" bottom="10.0" left="100.0" right="10.0"/>
+                </padding>
+            </HBox>
+            <padding>
+                <Insets top="0.0" bottom="10.0" left="0.0" right="10.0"/>
+            </padding>
+        </HBox>
+
+        <TableView fx:id="qfIiTableView" layoutX="25.0" layoutY="80.0" prefHeight="320.0" prefWidth="961.0">
+            <columns>
+                <TableColumn fx:id="sequenceNum" text="序号"/>
+                <TableColumn fx:id="status" text="状态"/>
+                <TableColumn fx:id="system" text="系统"/>
+                <TableColumn fx:id="tradeUnitOne" text="交易单元1"/>
+                <TableColumn fx:id="tradeUnitTwo" text="交易单元2"/>
+                <TableColumn fx:id="tradeUnitThree" text="交易单元3"/>
+                <TableColumn fx:id="tradeUnitFour" text="交易单元4"/>
+                <TableColumn fx:id="column_book_translator" text="结算会员"/>
+                <TableColumn fx:id="column_book_publisher" text="数据类型"/>
+                <TableColumn fx:id="column_book_publishTime" text="源文件"/>
+                <TableColumn fx:id="column_book_id" text="序号"/>
+                <TableColumn fx:id="column_book_name" text="状态"/>
+                <TableColumn fx:id="column_book_type" text="系统"/>
+                <TableColumn fx:id="column_book_author" text="交易单元1"/>
+                <TableColumn fx:id="column_book_id2" text="序号"/>
+                <TableColumn fx:id="column_book_name2" text="状态"/>
+                <TableColumn fx:id="column_book_type2" text="系统"/>
+                <TableColumn fx:id="column_book_author2" text="交易单元1"/>
+            </columns>
+            <!--<JFXScrollPane></JFXScrollPane>-->
+        </TableView>
+
+        <Label layoutX="84.0" layoutY="405.0" text="现金替代退补库源目录: " textFill="BLACK"/>
+        <Label fx:id="sourcePath" alignment="CENTER" layoutX="284.0" layoutY="405.0"/>
+        <Label layoutX="584.0" layoutY="405.0" text="数量:" textFill="BLACK"/>
+        <Label fx:id="count" alignment="CENTER" layoutX="684.0" layoutY="405.0"/>
+
+        <TableView fx:id="etfTableView" layoutX="25.0" layoutY="428.0" prefHeight="320.0" prefWidth="961.0">
+            <columns>
+                <TableColumn fx:id="etfSequenceNum" text="序号"/>
+                <TableColumn fx:id="etfStatus" text="状态"/>
+                <TableColumn fx:id="admin" text="管理人"/>
+                <TableColumn fx:id="etfCode" text="ETF代码"/>
+                <TableColumn fx:id="etfName" text="ETF名称"/>
+                <TableColumn fx:id="cilType" text="cil类型"/>
+                <TableColumn fx:id="cilSource" text="cil源文件"/>
+                <TableColumn fx:id="book_translator" text="结算会员"/>
+                <TableColumn fx:id="book_publisher" text="数据类型"/>
+                <TableColumn fx:id="book_publishTime" text="源文件"/>
+                <TableColumn fx:id="book_id" text="序号"/>
+                <TableColumn fx:id="book_name" text="状态"/>
+                <TableColumn fx:id="book_type" text="系统"/>
+                <TableColumn fx:id="book_author" text="交易单元1"/>
+            </columns>
+        </TableView>
+
+        <Label fx:id="dateTime" alignment="CENTER" layoutX="155.0" layoutY="770.0"
+               prefHeight="15.0" prefWidth="195.0">
+            <font>
+                <Font name="System Bold" size="13.0"/>
+            </font>
+        </Label>
+    </children>
+    <padding>
+        <Insets top="10.0" bottom="10.0" left="10.0" right="10.0"/>
+    </padding>
+    <!--</AnchorPane>-->
+</VBox>

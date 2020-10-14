@@ -9,6 +9,7 @@ import java.lang.annotation.Target;
 
 /**
  * 读写分离 - properties格式
+ * 可以加在实现方法上,也可以加在接口的抽象方法上
  * @author zk
  * @date 2020/3/30 11:31
  */

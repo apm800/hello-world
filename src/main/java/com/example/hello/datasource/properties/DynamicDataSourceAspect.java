@@ -9,6 +9,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -58,6 +59,26 @@ public class DynamicDataSourceAspect {
         DynamicDataSourceContextHolder.clear();
     }
 
+//    @Before(value = "pointCut()")
+//    public void doBeforeWithSlave(JoinPoint joinPoint) {
+//        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+//        //获取当前切点方法对象
+//        Method method = methodSignature.getMethod();
+//        //判断是否为接口方法
+//        if (method.getDeclaringClass().isInterface()) {
+//            try {
+//                //获取实际类型的方法对象
+//                method = joinPoint.getTarget().getClass()
+//                        .getDeclaredMethod(joinPoint.getSignature().getName(), method.getParameterTypes());
+//            } catch (NoSuchMethodException e) {
+//                LOG.error("方法不存在！", e);
+//            }
+//        }
+//        if (null == method.getAnnotation(TargetDataSource.class)) {
+//            DynamicDataSourceContextHolder.setSlave();
+//        }
+//    }
+
     @Before(value = "pointCut()")
     public void doBeforeWithSlave(JoinPoint joinPoint) {
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
@@ -69,6 +90,13 @@ public class DynamicDataSourceAspect {
                 //获取实际类型的方法对象
                 method = joinPoint.getTarget().getClass()
                         .getDeclaredMethod(joinPoint.getSignature().getName(), method.getParameterTypes());
+                //获取interface内抽象方法的注解
+                TargetDataSource annotation = AnnotationUtils.findAnnotation(method, TargetDataSource.class);
+                if (annotation == null) {
+                    DynamicDataSourceContextHolder.set(DataSourceKey.DB_MASTER);
+                } else {
+                    DynamicDataSourceContextHolder.set(annotation.dataSourceKey());
+                }
             } catch (NoSuchMethodException e) {
                 LOG.error("方法不存在！", e);
             }

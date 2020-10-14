@@ -103,6 +103,25 @@
             <artifactId>spring-boot-starter-websocket</artifactId>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.jfoenix/jfoenix -->
+        <dependency>
+            <groupId>com.jfoenix</groupId>
+            <artifactId>jfoenix</artifactId>
+            <version>8.0.4</version>
+        </dependency>
+        <!--读写dbf数据库文件-->
+        <!--<dependency>-->
+            <!--<groupId>com.linuxense</groupId>-->
+            <!--<artifactId>javadbf</artifactId>-->
+            <!--<version>0.4.0</version>-->
+        <!--</dependency>-->
+
+        <dependency>
+            <groupId>com.github.albfernandez</groupId>
+            <artifactId>javadbf</artifactId>
+            <version>1.9.2</version>
+        </dependency>
+
     </dependencies>
 
     <build>

@@ -1,10 +1,13 @@
 package com.example.hello.entity;
 
+import javafx.scene.control.CheckBox;
+
 /**
  * @author zhoukai
  * @date 2020/7/22 15:29
  */
 public class UserInfo {
+//    public  CheckBox cb = new CheckBox();
     private int id;
     private String name;
     private String email;
