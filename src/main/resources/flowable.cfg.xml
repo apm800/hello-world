@@ -1,0 +1,25 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="processEngineConfiguration"
+          class="org.flowable.engine.impl.cfg.StandaloneProcessEngineConfiguration">
+
+        <!--mysql-->
+        <!--<property name="jdbcUrl" value="jdbc:mysql://localhost/activiti_demo?useSSL=false"/>-->
+        <!--<property name="jdbcDriver" value="com.mysql.jdbc.Driver"/>-->
+        <!--<property name="jdbcUsername" value="root"/>-->
+        <!--<property name="jdbcPassword" value="root"/>-->
+
+        <property name="jdbcUrl" value="jdbc:mysql://127.0.0.1/flowable_test?allowMultiQueries=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false"/>
+        <property name="jdbcDriver" value="com.mysql.jdbc.Driver"/>
+        <property name="jdbcUsername" value="root"/>
+        <property name="jdbcPassword" value="root"/>
+
+        <property name="databaseSchemaUpdate" value="true"/>
+        <property name="flowable5CompatibilityEnabled" value="true"/>
+
+    </bean>
+
+</beans>
+

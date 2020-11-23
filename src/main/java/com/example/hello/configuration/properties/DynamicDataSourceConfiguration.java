@@ -10,6 +10,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -27,6 +28,7 @@ import java.util.Map;
 @MapperScan(basePackages = "com.example.hello.dao")
 @Configuration
 public class DynamicDataSourceConfiguration {
+    @Primary
     @Bean
     @ConfigurationProperties(prefix = "multiple.datasource.master")
     public DataSource dbMaster() {
