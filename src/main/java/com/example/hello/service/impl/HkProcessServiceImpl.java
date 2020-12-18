@@ -13,6 +13,7 @@ import org.flowable.engine.history.HistoricActivityInstance;
 import org.flowable.engine.repository.Deployment;
 import org.flowable.engine.repository.ProcessDefinition;
 import org.flowable.engine.repository.ProcessDefinitionQuery;
+import org.flowable.engine.runtime.Execution;
 import org.flowable.engine.runtime.ProcessInstance;
 import org.flowable.task.api.Task;
 import org.flowable.variable.api.history.HistoricVariableInstance;
@@ -133,6 +134,7 @@ public class HkProcessServiceImpl implements HkProcessService {
             for (Task task : taskList) {
                 JSONObject jsonEntity = runtimeService.getVariable(task.getExecutionId(), PARAMS, JSONObject.class);
                 System.out.println(jsonEntity.getLong(CREATION_TIME));
+                //根据业务场景,可以把processInstanceId存到数据库,用于唯一性判断和相关操作
                 if (match(salesman, jsonEntity, creationTime)) {
 
                     for (ProcessInstance instance : processInstanceList) {
@@ -155,6 +157,7 @@ public class HkProcessServiceImpl implements HkProcessService {
                 if (PARAMS.equals(variableInstance.getVariableName())) {
                     Object value = variableInstance.getValue();
                     JSONObject jsonEntity = (JSONObject) JSON.toJSON(value);
+                    //根据业务场景,可以把processInstanceId存到数据库,用于唯一性判断和相关操作
                     if (match(salesman, jsonEntity, creationTime)) {
                         resultList.add(alreadyEnd);
                         return resultList;
@@ -180,6 +183,7 @@ public class HkProcessServiceImpl implements HkProcessService {
             if (PARAMS.equals(hvi.getVariableName())) {
                 Object value = hvi.getValue();
                 JSONObject jsonEntity = (JSONObject) JSON.toJSON(value);
+                //根据业务场景,可以把processInstanceId存到数据库,用于唯一性判断和相关操作
                 if (match(salesman, jsonEntity, creationTime)) {
                     processInstanceId = hvi.getProcessInstanceId();
 
@@ -247,6 +251,7 @@ public class HkProcessServiceImpl implements HkProcessService {
 
         for (Task task : taskList) {
             JSONObject jsonEntity = runtimeService.getVariable(task.getExecutionId(), PARAMS, JSONObject.class);
+            //根据业务场景,可以把processInstanceId存到数据库,用于唯一性判断和相关操作
             if (match(salesman, jsonEntity, processParam.getCreationTime())) {
                 taskService.complete(task.getId(), JSONObject.toJavaObject(jsonEntity, Map.class));
                 LOGGER.info("完成[" + task.getName() + "]节点任务,params:{}", jsonEntity);
@@ -292,7 +297,7 @@ public class HkProcessServiceImpl implements HkProcessService {
         }
         for (Task task : taskList) {
             JSONObject jsonEntity = runtimeService.getVariable(task.getExecutionId(), PARAMS, JSONObject.class);
-
+            //根据业务场景,可以把processInstanceId存到数据库,用于唯一性判断和相关操作
             if (match(param.getSalesman(), jsonEntity, param.getCreationTime())) {
                 //unselectedProDefKey不是空,说明此节点没有勾选,直接完成
                 if (StringUtils.isNotBlank(unselectedProDefKey) && task.getTaskDefinitionKey().equals(unselectedProDefKey)) {
@@ -373,18 +378,26 @@ public class HkProcessServiceImpl implements HkProcessService {
         }
     }
 
+    /**
+     * 根据业务场景,可以把processInstanceId存到数据库,用于唯一性判断和相关操作
+     *
+     * @param salesman     业务员
+     * @param jsonObject   参数
+     * @param creationTime 创建时间
+     * @author zk
+     * @date 2020/12/9 15:25
+     */
     private boolean match(String salesman, JSONObject jsonObject, Long creationTime) {
         return salesman.equals(jsonObject.getString(SALESMAN)) && creationTime.equals(jsonObject.getLong(CREATION_TIME));
     }
 
     private void backToStep(String processInstanceId) {
-        List<String> idsList = new ArrayList<>();
-        idsList.add("ywZbCheck");
-        idsList.add("teamLeaderCheck");
-        idsList.add("hggCheck");
+        // 并行网关的退回
+        List<String> currentExecutionIds = new ArrayList<>();
+        List<Execution> executions = runtimeService.createExecutionQuery().parentId(processInstanceId).list();
+        executions.forEach(en -> currentExecutionIds.add(en.getId()));
         runtimeService.createChangeActivityStateBuilder()
-                .processInstanceId(processInstanceId)
-                .moveActivityIdsToSingleActivityId(idsList, "salesmanFillIn")
+                .moveExecutionsToSingleActivityId(currentExecutionIds, "salesmanFillIn")
                 .changeState();
     }
 }
